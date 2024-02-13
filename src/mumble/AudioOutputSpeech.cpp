@@ -340,7 +340,7 @@ bool AudioOutputSpeech::prepareSampleBuffer(unsigned int frameCount) {
 
 				assert(m_codec == Mumble::Protocol::AudioCodec::Opus);
 
-				if (qba.isEmpty() || !(p && p->bLocalMute)) {
+				if (qba.isEmpty() || !(p && p->bLocalMute && !qsOtherVolume->value())) {
 					// If qba is empty, we have to let Opus know about the packet loss
 					// Otherwise if the associated user is not locally muted, we want to decode the audio
 					// packet normally in order to be able to play it.
